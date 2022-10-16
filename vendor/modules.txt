@@ -1,0 +1,12 @@
+# github.com/golang/freetype v0.0.0-20170609003504-e2365dfdc4a0
+## explicit
+github.com/golang/freetype/raster
+github.com/golang/freetype/truetype
+# github.com/narqo/go-badge v0.0.0-20220127184443-140af28a266e
+## explicit; go 1.17
+github.com/narqo/go-badge
+github.com/narqo/go-badge/fonts
+# golang.org/x/image v0.0.0-20211028202545-6944b10bf410
+## explicit; go 1.12
+golang.org/x/image/font
+golang.org/x/image/math/fixed
