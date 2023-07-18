@@ -46,4 +46,20 @@ And add the badges in the project (settings > General > Badges ):
 * Badge: https://gitlab.com/%{project_path}/-/jobs/artifacts/main/raw/badge.svg?job=build_badges2
 
 
+# Install
 
+## In your docker image
+
+```
+FROM sgaunet/gobadger:latest AS build
+
+FROM ...
+
+COPY --from=build /usr/bin/gobadger /usr/bin/gobadger
+```
+
+## Install the binary
+
+```
+curl -L -o gobadger https://github.com/sgaunet/gobadger/releases/download/v0.2.0/gobadger_0.2.0_linux_amd64
+```
