@@ -16,6 +16,12 @@ func main() {
 	flag.StringVar(&value, "v", "", "Value for the title")
 	flag.Parse()
 
+	if title == "" || value == "" {
+		fmt.Fprintln(os.Stderr, "title and value are required")
+		flag.Usage()
+		os.Exit(1)
+	}
+
 	f, err := os.Create(outputFile)
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err.Error())
