@@ -10,6 +10,7 @@ builds:
       - CGO_ENABLED=0
     ldflags:
       - -X main.version={{.Version}}
+      # - -s -w 
     goos:
       - linux
       - darwin
@@ -27,15 +28,7 @@ builds:
         - upx "{{ .Path }}"
 archives:
   - name_template: '{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}'
-    replacements:
-      darwin: Darwin
-      linux: Linux
-      windows: Windows
-      386: i386
-      amd64: x86_64
-    format_overrides:
-    - goos: windows
-      format: zip
+    format: binary
 checksum:
   name_template: 'checksums.txt'
 snapshot:
@@ -125,9 +118,6 @@ docker_manifests:
       - sgaunet/{{ .ProjectName }}:latest-armv6
       - sgaunet/{{ .ProjectName }}:latest-armv7
 
-source:
-  # https://goreleaser.com/customization/source/
-  enabled: true
 changelog:
   sort: asc
   filters:
