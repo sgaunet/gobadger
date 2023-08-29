@@ -2,11 +2,11 @@
 ## explicit
 github.com/golang/freetype/raster
 github.com/golang/freetype/truetype
-# github.com/narqo/go-badge v0.0.0-20221212191103-ba83bed45a1a
+# github.com/narqo/go-badge v0.0.0-20230821190521-c9a75c019a59
 ## explicit; go 1.17
 github.com/narqo/go-badge
 github.com/narqo/go-badge/fonts
-# golang.org/x/image v0.9.0
+# golang.org/x/image v0.11.0
 ## explicit; go 1.12
 golang.org/x/image/font
 golang.org/x/image/math/fixed
