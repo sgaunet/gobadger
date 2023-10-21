@@ -5,6 +5,12 @@ vars:
 
 tasks:
   default:
+    desc: "List all tasks"
+    cmds:
+      - task -a
+
+  binary:
+    desc: "Build binary"
     cmds:
       - CGO_ENABLED=0 go build .
     #   - upx -q {{.BINFILE}}
@@ -14,14 +20,18 @@ tasks:
     #   - "{{.BINFILE}}"
 
   snapshot:
+    desc: "Create a snapshot release"
     cmds:
       - GITLAB_TOKEN="" goreleaser --clean --snapshot
     
   release:
+    desc: "Create a release"
     cmds:
       - GITLAB_TOKEN="" goreleaser --clean
 
   godoc:
+    desc: "Run godoc server"
     cmds:
+      - echo "http://localhost:6060/"
       - godoc -http=:6060
     
