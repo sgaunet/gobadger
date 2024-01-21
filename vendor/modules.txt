@@ -6,7 +6,7 @@ github.com/golang/freetype/truetype
 ## explicit; go 1.17
 github.com/narqo/go-badge
 github.com/narqo/go-badge/fonts
-# golang.org/x/image v0.13.0
+# golang.org/x/image v0.15.0
 ## explicit; go 1.18
 golang.org/x/image/font
 golang.org/x/image/math/fixed
