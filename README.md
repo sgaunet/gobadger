@@ -1,5 +1,5 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/sgaunet/gobadger)](https://goreportcard.com/report/github.com/sgaunet/gobadger)
-
+![CI](https://github.com/github/docs/actions/workflows/build.yml/badge.svg)
 
 # gobadger
 
