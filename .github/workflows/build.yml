@@ -1,4 +1,4 @@
-name: Dependabot auto-approve
+name: build
 on:
   push:
     branches:    
