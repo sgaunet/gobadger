@@ -17,7 +17,9 @@ jobs:
         go version
         go get -u golang.org/x/lint/golint
     - name: Build
-      run: go build .
+      run: |
+        go mod vendor
+        go build .
     # - name: Test With Coverage
     #   run: go test -v  -coverprofile=coverage.txt -covermode=atomic ./...
     - name: Run Vet & Lint
