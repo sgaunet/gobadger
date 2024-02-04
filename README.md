@@ -1,5 +1,6 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/sgaunet/gobadger)](https://goreportcard.com/report/github.com/sgaunet/gobadger)
 ![CI](https://github.com/sgaunet/gobadger/actions/workflows/build.yml/badge.svg)
+[![Maintainability](https://api.codeclimate.com/v1/badges/b816877e855ed6793bc1/maintainability)](https://codeclimate.com/github/sgaunet/gobadger/maintainability)
 
 # gobadger
 
