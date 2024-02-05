@@ -22,17 +22,24 @@ func main() {
 		os.Exit(1)
 	}
 
-	f, err := os.Create(outputFile)
+	err := generateBadge(outputFile, title, value, color)
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err.Error())
 		os.Exit(1)
+	}
+}
+
+func generateBadge(outputFile, title, value, color string) error {
+	f, err := os.Create(outputFile)
+	if err != nil {
+		return err
 	}
 	defer f.Close()
 
-	badge, err := badge.RenderBytes(title, value, badge.Color(color))
+	b, err := badge.RenderBytes(title, value, badge.Color(color))
 	if err != nil {
-		fmt.Fprintln(os.Stderr, err.Error())
-		os.Exit(1)
+		return err
 	}
-	f.Write(badge)
+	_, err = f.Write(b)
+	return err
 }
