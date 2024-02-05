@@ -9,6 +9,11 @@ tasks:
     cmds:
       - task -a
 
+  linter:
+    desc: "execute linter"
+    cmds:
+      - golangci-lint
+
   binary:
     desc: "Build binary"
     cmds:
