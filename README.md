@@ -1,6 +1,10 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/sgaunet/gobadger)](https://goreportcard.com/report/github.com/sgaunet/gobadger)
 ![CI](https://github.com/sgaunet/gobadger/actions/workflows/build.yml/badge.svg)
 [![Maintainability](https://api.codeclimate.com/v1/badges/b816877e855ed6793bc1/maintainability)](https://codeclimate.com/github/sgaunet/gobadger/maintainability)
+[![GitHub release](https://img.shields.io/github/release/sgaunet/gobadger.svg)](https://github.com/sgaunet/gobadger/releases/latest)
+![GitHub Downloads](https://img.shields.io/github/downloads/sgaunet/gobadger/total)
+[![GoDoc](https://godoc.org/github.com/sgaunet/gobadger?status.svg)](https://godoc.org/github.com/sgaunet/gobadger)
+[![License](https://img.shields.io/github/license/sgaunet/gobadger.svg)]
 
 # gobadger
 
