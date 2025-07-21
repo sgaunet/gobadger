@@ -34,4 +34,17 @@ tasks:
     cmds:
       - echo "http://localhost:6060/"
       - godoc -http=:6060
-    
+
+  test:
+    desc: "Run all tests"
+    cmds:
+      - go test ./... -v
+
+  test-coverage:
+    desc: "Run tests with coverage"
+    cmds:
+      - go test ./... -coverprofile=profile.cov
+      #- # go test ./internal/... -coverpkg=./internal/... -coverprofile=profile.cov
+      #- #echo -n "Total Coverage{{":"}} "
+      - go tool cover -func profile.cov | grep '^total:' | awk '{print $3}' | sed 's/%//'
+      - rm -f profile.cov
