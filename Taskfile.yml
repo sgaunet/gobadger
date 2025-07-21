@@ -41,10 +41,43 @@ tasks:
       - go test ./... -v
 
   test-coverage:
-    desc: "Run tests with coverage"
+    desc: "Run comprehensive coverage tests including binary instrumentation"
     cmds:
-      - go test ./... -coverprofile=profile.cov
-      #- # go test ./internal/... -coverpkg=./internal/... -coverprofile=profile.cov
-      #- #echo -n "Total Coverage{{":"}} "
-      - go tool cover -func profile.cov | grep '^total:' | awk '{print $3}' | sed 's/%//'
-      - rm -f profile.cov
+      # Run unit tests for internal packages with coverage
+      - go test ./internal/... -coverprofile=unit.cov -coverpkg=./internal/...
+      - 'echo -n "Unit Test Coverage: "'
+      - 'go tool cover -func unit.cov | grep "^total:" | awk "{print \$3}"'
+      # Build binary with coverage instrumentation and test CLI
+      - CGO_ENABLED=0 go build -cover -o {{.BINFILE}}-coverage .
+      - task: test-cli-coverage
+      # Convert binary coverage data to profile
+      - go tool covdata textfmt -i=./coverage -o integration.cov
+      - 'echo -n "Integration Test Coverage: "'
+      - 'go tool cover -func integration.cov | grep "^total:" | awk "{print \$3}" || echo "No integration coverage data"'
+      # Show unit test coverage (most comprehensive)
+      - 'echo -n "Overall Coverage (Unit Tests): "'
+      - 'go tool cover -func unit.cov | grep "^total:" | awk "{print \$3}"'
+      # Cleanup
+      - rm -f unit.cov integration.cov {{.BINFILE}}-coverage
+      - rm -rf ./coverage
+
+  test-cli-coverage:
+    desc: "Run CLI tests with coverage instrumentation"
+    internal: true
+    cmds:
+      # Create coverage directory
+      - mkdir -p coverage
+      # Test successful badge generation
+      - GOCOVERDIR=./coverage ./{{.BINFILE}}-coverage -t "Build" -v "Passing" -o "test1.svg"
+      - test -f test1.svg && grep -q "<svg" test1.svg || (echo "Badge generation failed" && exit 1)
+      # Test with custom color
+      - GOCOVERDIR=./coverage ./{{.BINFILE}}-coverage -t "Coverage" -v "95%" -c "#4c1" -o "test2.svg" 
+      - test -f test2.svg && grep -q "<svg" test2.svg || (echo "Custom color badge failed" && exit 1)
+      # Test error cases (these should fail)
+      - GOCOVERDIR=./coverage ./{{.BINFILE}}-coverage -v "Passing" || true
+      - GOCOVERDIR=./coverage ./{{.BINFILE}}-coverage -t "Build" || true
+      - GOCOVERDIR=./coverage ./{{.BINFILE}}-coverage || true
+      # Test help flag
+      - GOCOVERDIR=./coverage ./{{.BINFILE}}-coverage -h || true
+      # Cleanup test files
+      - rm -f test1.svg test2.svg

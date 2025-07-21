@@ -22,11 +22,30 @@ jobs:
         id: coverage
         run: |
           go mod download
-          go test ./... -coverprofile=profile.cov
-          # go test ./internal/... -coverpkg=./internal/... -coverprofile=profile.cov
-          #echo -n "Total Coverage{{":"}} "
-          total=$(go tool cover -func profile.cov | grep '^total:' | awk '{print $3}' | sed 's/%//')
-          rm -f profile.cov
+          # Run unit tests for internal packages
+          go test ./internal/... -coverprofile=unit.cov -coverpkg=./internal/...
+          # Build binary with coverage instrumentation
+          CGO_ENABLED=0 go build -cover -o gobadger-coverage .
+          # Create coverage directory for integration tests
+          mkdir -p coverage
+          # Run CLI integration tests with coverage
+          GOCOVERDIR=./coverage ./gobadger-coverage -t "Build" -v "Passing" -o "test1.svg"
+          test -f test1.svg && grep -q "<svg" test1.svg || (echo "Badge generation failed" && exit 1)
+          GOCOVERDIR=./coverage ./gobadger-coverage -t "Coverage" -v "95%" -c "#4c1" -o "test2.svg"
+          test -f test2.svg && grep -q "<svg" test2.svg || (echo "Custom color badge failed" && exit 1)
+          # Test error cases (these should fail)
+          GOCOVERDIR=./coverage ./gobadger-coverage -v "Passing" || true
+          GOCOVERDIR=./coverage ./gobadger-coverage -t "Build" || true
+          GOCOVERDIR=./coverage ./gobadger-coverage || true
+          # Test help flag
+          GOCOVERDIR=./coverage ./gobadger-coverage -h || true
+          # Convert binary coverage data to profile
+          go tool covdata textfmt -i=./coverage -o integration.cov
+          # Use integration test coverage as the primary metric
+          total=$(go tool cover -func integration.cov | grep '^total:' | awk '{print $3}' | sed 's/%//')
+          # Cleanup
+          rm -f unit.cov integration.cov gobadger-coverage test1.svg test2.svg
+          rm -rf ./coverage
           echo "COVERAGE_VALUE=${total}" >> $GITHUB_ENV
 
       - uses: actions/checkout@v4
