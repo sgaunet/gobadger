@@ -1,9 +1,12 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/sgaunet/gobadger)](https://goreportcard.com/report/github.com/sgaunet/gobadger)
-![CI](https://github.com/sgaunet/gobadger/actions/workflows/build.yml/badge.svg)
 [![GitHub release](https://img.shields.io/github/release/sgaunet/gobadger.svg)](https://github.com/sgaunet/gobadger/releases/latest)
 ![GitHub Downloads](https://img.shields.io/github/downloads/sgaunet/gobadger/total)
-[![GoDoc](https://godoc.org/github.com/sgaunet/gobadger?status.svg)](https://godoc.org/github.com/sgaunet/gobadger)
-[![License](https://img.shields.io/github/license/sgaunet/gobadger.svg)]
+![Coverage](https://raw.githubusercontent.com/wiki/sgaunet/gobadger/coverage-badge.svg)
+[![linter](https://github.com/sgaunet/gobadger/actions/workflows/coverage.yml/badge.svg)](https://github.com/sgaunet/gobadger/actions/workflows/coverage.yml)
+[![coverage](https://github.com/sgaunet/gobadger/actions/workflows/coverage.yml/badge.svg)](https://github.com/sgaunet/gobadger/actions/workflows/coverage.yml)
+[![Snapshot Build](https://github.com/sgaunet/gobadger/actions/workflows/snapshot.yml/badge.svg)](https://github.com/sgaunet/gobadger/actions/workflows/snapshot.yml)
+[![Release Build](https://github.com/sgaunet/gobadger/actions/workflows/release.yml/badge.svg)](https://github.com/sgaunet/gobadger/actions/workflows/release.yml)
+![License](https://img.shields.io/github/license/sgaunet/gobadger.svg)
 
 # gobadger
 
