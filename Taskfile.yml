@@ -12,17 +12,12 @@ tasks:
   linter:
     desc: "execute linter"
     cmds:
-      - golangci-lint
+      - golangci-lint run
 
   binary:
     desc: "Build binary"
     cmds:
-      - CGO_ENABLED=0 go build .
-    #   - upx -q {{.BINFILE}}
-    # # silent: true
-    # method: checksum
-    # generates:
-    #   - "{{.BINFILE}}"
+      - CGO_ENABLED=0 go build -o {{.BINFILE}} .
 
   snapshot:
     desc: "Create a snapshot release"
@@ -32,7 +27,7 @@ tasks:
   release:
     desc: "Create a release"
     cmds:
-      - GITLAB_TOKEN="" goreleaser --clean
+      - GITLAB_TOKEN="" goreleaser --clean --skip validate
 
   godoc:
     desc: "Run godoc server"
