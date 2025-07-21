@@ -4,6 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"path/filepath"
 
 	"github.com/narqo/go-badge"
 )
@@ -30,16 +31,28 @@ func main() {
 }
 
 func generateBadge(outputFile, title, value, color string) error {
-	f, err := os.Create(outputFile)
+	// Clean the output file path to prevent path traversal
+	cleanPath := filepath.Clean(outputFile)
+	
+	f, err := os.Create(cleanPath)
 	if err != nil {
-		return err
+		return fmt.Errorf("failed to create file: %w", err)
 	}
-	defer f.Close()
+	defer func() {
+		if cerr := f.Close(); cerr != nil {
+			if err == nil {
+				err = fmt.Errorf("failed to close file: %w", cerr)
+			}
+		}
+	}()
 
 	b, err := badge.RenderBytes(title, value, badge.Color(color))
 	if err != nil {
-		return err
+		return fmt.Errorf("failed to render badge: %w", err)
 	}
 	_, err = f.Write(b)
-	return err
+	if err != nil {
+		return fmt.Errorf("failed to write badge: %w", err)
+	}
+	return nil
 }
