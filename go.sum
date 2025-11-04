@@ -4,3 +4,5 @@ github.com/narqo/go-badge v0.0.0-20230821190521-c9a75c019a59 h1:kbREB9muGo4sHLoZ
 github.com/narqo/go-badge v0.0.0-20230821190521-c9a75c019a59/go.mod h1:m9BzkaxwU4IfPQi9ko23cmuFltayFe8iS0dlRlnEWiM=
 golang.org/x/image v0.29.0 h1:HcdsyR4Gsuys/Axh0rDEmlBmB68rW1U9BUdB3UVHsas=
 golang.org/x/image v0.29.0/go.mod h1:RVJROnf3SLK8d26OW91j4FrIHGbsJ8QnbEocVTOWQDA=
+golang.org/x/image v0.32.0 h1:6lZQWq75h7L5IWNk0r+SCpUJ6tUVd3v4ZHnbRKLkUDQ=
+golang.org/x/image v0.32.0/go.mod h1:/R37rrQmKXtO6tYXAjtDLwQgFLHmhW+V6ayXlxzP2Pc=
