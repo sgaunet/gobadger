@@ -38,7 +38,7 @@ tasks:
   test:
     desc: "Run all tests"
     cmds:
-      - go test ./... -v
+      - go test ./... -v -race
 
   test-coverage:
     desc: "Run comprehensive coverage tests including binary instrumentation"
