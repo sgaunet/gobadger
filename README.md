@@ -1,4 +1,3 @@
-[![Go Report Card](https://goreportcard.com/badge/github.com/sgaunet/gobadger)](https://goreportcard.com/report/github.com/sgaunet/gobadger)
 [![GitHub release](https://img.shields.io/github/release/sgaunet/gobadger.svg)](https://github.com/sgaunet/gobadger/releases/latest)
 ![GitHub Downloads](https://img.shields.io/github/downloads/sgaunet/gobadger/total)
 ![Coverage](https://raw.githubusercontent.com/wiki/sgaunet/gobadger/coverage-badge.svg)
