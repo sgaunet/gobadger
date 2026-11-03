@@ -21,3 +21,4 @@ linters:
     - noinlineerr
     - revive
     - ireturn
+    - gomodguard # deprecated since v2.12.0, superseded by gomodguard_v2 (enabled via default: all)
